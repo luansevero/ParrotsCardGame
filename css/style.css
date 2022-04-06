@@ -71,12 +71,7 @@ img {
 .back-face {
   transform: rotateY(180deg);
 }
-
-  .card:hover .back-face {
+.front-face {
     transform: rotateY(0deg);
-  }
-
-  .card:hover .front-face {
-    transform: rotateY(-180deg);
-  }
+}
 

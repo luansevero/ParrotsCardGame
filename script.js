@@ -25,6 +25,9 @@ function startGame(){
         imgBackFace[i].src = arrayImgs[i] //Mudar src das image(Já sorteados)
     }
 }
-
+function rotateImg(element){
+    element.querySelector(`.back-face`).style.transform = "rotateY(0deg)"
+    element.querySelector(`.front-face`).style.transform = "rotateY(-180deg)"
+}
 
  
