@@ -29,14 +29,40 @@ function createParrotCards(counter){
         newParrotCard.setAttribute(`onclick`, `seeBackFace(this)`)
         newParrotCard.innerHTML = `
         <div class="front-face face"><img src="archives/front.png" /></div>
-        <div class="back-face face"><img src="backCards/${arrayImgs[i]}.gif"/></div>`;
+        <div class="back-face face"><img class="backImg" src="backCards/${arrayImgs[i]}.gif"/></div>`;
         document.querySelector(`main`).appendChild(newParrotCard);
     }
 }
+let cardsTurned = 0
+let imgcheck = []
+let cardcheck = []
+let img;
 function seeBackFace(element){
-    element.classList.add(`toTurn`) // Virar
-    element.classList.remove(`toTurn`) // Desvirar
+    const ParrotCards = document.querySelectorAll(`.card`)
+    element.removeAttribute("onclick")
+    element.classList.add(`toTurn`)
+    cardsTurned++
+    img = element.querySelector(`.backImg`)
+    imgcheck.push(img)
+    cardcheck.push(element)
+    if(cardsTurned == 2){
+        if(imgcheck[0].src == imgcheck[1].src){
+            for(let i = 0; i < cardcheck.length; i++){
+                cardcheck[i].classList.remove(`toTurn`)
+                cardcheck[i].classList.add(`turned`)
+            }
+        } else {
+            for(let i = 0; i < cardcheck.length; i++){
+                cardcheck[i].setAttribute(`onclick`, `seeBackFace(this)`)
+                cardcheck[i].classList.remove(`toTurn`)
+            }
+        }
+        cardsTurned = 0
+        imgcheck = []
+        cardcheck = []
+    }
 }
+
 
 
  

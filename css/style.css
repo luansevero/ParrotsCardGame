@@ -83,4 +83,9 @@ img {
 .toTurn .front-face{
   transform: rotateY(-180deg);
 }
-
+.turned .back-face{
+  transform: rotateY(0deg);
+}
+.turned .front-face{
+  transform: rotateY(-180deg);
+}
