@@ -11,6 +11,14 @@ header{
     align-items: center;
     padding: 40px 10px 8px 10px; 
 }
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+main > div{
+  display: flex;
+}
 /*Cards*/
 
 
@@ -26,39 +34,43 @@ body h1{
     text-align: center;
 }
 
+
+/*Cartas*/
 .card {
-    margin:34px;
-    width: 117px;
-    height: 146px;
-    position: relative;
-    display: none;
-  }
-img{
-    height: 50px;
-    width: 50px;
+  margin: 34px;
+  width: 117px;
+  height: 146px;
+  position: relative;
+  display: none;
 }
+.face {
+  width: 100%;
+  height: 100%;
+  background-color: #A7E9AF;
+  border: 1px solid #99cea8;
+  border-radius: 5px;
+  box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  backface-visibility: hidden;
+  transition: all .5s;
+  transform-style: preserve-3d;
+}
+img {
+  width: 100px;
+  height: 100px;
+}
+/*Javascript class*/
 .show{
     display: flex;
 }
 
-  .face {
-    width: 100%;
-    height: 100%;
-    background-color: #A7E9AF;
-    border-radius: 10px;
-    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    backface-visibility: hidden;
-    transition: all .5s;
-    transform-style: preserve-3d;
-  }
-
-  .back-face {
-    transform: rotateY(180deg);
-  }
+/*Efeito das Cartas*/
+.back-face {
+  transform: rotateY(180deg);
+}
 
   .card:hover .back-face {
     transform: rotateY(0deg);

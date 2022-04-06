@@ -9,124 +9,113 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mobile.css">
 </head>
-<body onload = "isANumber()"> <!--Onload-->
-    
+<body onload ="startGame()">
     <header>
         <h1>PARROT CARD GAME</h1>
     </header>
+
     <main>
-        <div class="card" onclick="toTurnCard()">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
+        <div class="container-left">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face" onclick="faceDown()">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/bobrossparrot.gif" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face" onclick="faceDown()">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face" onclick="faceDown()">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face" onclick="faceDown()">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face" onclick="faceDown()">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/bobrossparrot.gif" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/explodyparrot.gif" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/explodyparrot.gif" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/fiestaparrot.gif" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/fiestaparrot.gif" alt="">
+            <div class="card" onclick="toTurnCard()">
+                <div class="front-face face">
+                    <img src="/Archives/frontCard/front.png" alt="">
+                </div>
+                <div class="back-face face">
+                    <img class="imgBackFace" src="">
+                </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
-            </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/metalparrot.gif" alt="">
-            </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
-            </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/metalparrot.gif" alt="">
-            </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
-            </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/revertitparrot.gif" alt="">
-            </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
-            </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/revertitparrot.gif" alt="">
-            </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
-            </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/tripletsparrot.gif" alt="">
-            </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
-            </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/tripletsparrot.gif" alt="">
-            </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
-            </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/unicornparrot.gif" alt="">
-            </div>
-        </div>
-        <div class="card">
-            <div class="front-face face" onclick="faceDown()">
-                <img src="/Archives/frontCard/front.png" alt="">
-            </div>
-            <div class="back-face face">
-                <img src="/Archives/backCards/unicornparrot.gif" alt="">
-            </div>
-        </div> 
+
+
+
+
     </main>
 
     <script src="script.js"></script>
