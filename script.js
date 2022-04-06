@@ -33,6 +33,10 @@ function createParrotCards(counter){
         document.querySelector(`main`).appendChild(newParrotCard);
     }
 }
+function seeBackFace(element){
+    element.classList.add(`toTurn`) // Virar
+    element.classList.remove(`toTurn`) // Desvirar
+}
 
 
  

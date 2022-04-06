@@ -13,8 +13,9 @@ header{
 }
 main{
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }
 main > div{
   display: flex;
@@ -76,5 +77,10 @@ img {
     transform: rotateY(0deg);
 }
 /*Efeito das Cartas com interação as Funções do JS*/
-
+.toTurn .back-face{
+  transform: rotateY(0deg);
+}
+.toTurn .front-face{
+  transform: rotateY(-180deg);
+}
 
