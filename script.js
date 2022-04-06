@@ -1,33 +1,16 @@
 function startGame(){
-    const arrayImgsdataBase = ["backCards/bobrossparrot.gif", "backCards/bobrossparrot.gif","backCards/explodyparrot.gif","backCards/explodyparrot.gif","backCards/fiestaparrot.gif","backCards/fiestaparrot.gif","backCards/metalparrot.gif","backCards/metalparrot.gif","backCards/revertitparrot.gif","backCards/revertitparrot.gif","backCards/tripletsparrot.gif","backCards/tripletsparrot.gif","backCards/unicorn.gif","backCards/unicorn.gif",]
-    let arrayImgs = []
-    let number = prompt("Quantas cartas você quer jogar?")
-        number = Number(number)
-    for(let i = 0; i == i; i++){
-        if(number % 2 == 0 && number <= 14 && number >= 4){
+    let cardNumber = checkNumber()//Número de Cartas digitada pelo Usuário!                            
+}
+function checkNumber(){
+    let cardNumber = prompt("Bem vindo ao PARROT CARD GAME! Com quantas cartas você quer jogar? Digite números pares entre 4 e 14!")
+    cardNumber = Number(cardNumber)
+    for(let i = 0; i == i; i++){ //Verificar se o número digito é válido!
+        if(cardNumber % 2 == 0 && cardNumber <= 14 && cardNumber >= 4){
             break
         }
-        number = prompt("Quantas cartas você quer jogar?")
+        cardNumber = prompt("Número inválido!Digite número pares entre 4 e 14!")
     }
-    //Final do Verificador de Número
-    //Embaralhador de Cartas
-    for(let i = 0; i < number; i++){
-        arrayImgs.push(arrayImgsdataBase[i])
-    }
-    arrayImgs.sort(comparador)
-    function comparador() { 
-	return Math.random() - 0.5; 
-    }
-    const cartas = document.querySelectorAll(`.card`); //Saber quantas cartas vão estar em jogo.
-    const imgBackFace = document.querySelectorAll(`.imgBackFace`) //Pegar o src das cartas para poder mudar
-    for(let i = 0; i < number; i++){ //Limitador = número de cartas digitada pelo usuário
-        cartas[i].classList.add(`show`) //Dar classe para as cartas que vão aparecer.
-        imgBackFace[i].src = arrayImgs[i] //Mudar src das image(Já sorteados)
-    }
-}
-function rotateImg(element){
-    element.querySelector(`.back-face`).style.transform = "rotateY(0deg)"
-    element.querySelector(`.front-face`).style.transform = "rotateY(-180deg)"
+    return cardNumber
 }
 
  

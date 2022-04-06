@@ -41,7 +41,7 @@ body h1{
   width: 117px;
   height: 146px;
   position: relative;
-  display: none;
+  display: flex;
 }
 .face {
   width: 100%;
@@ -67,6 +67,7 @@ img {
     display: flex;
 }
 
+
 /*Efeito das Cartas*/
 .back-face {
   transform: rotateY(180deg);
@@ -74,4 +75,6 @@ img {
 .front-face {
     transform: rotateY(0deg);
 }
+/*Efeito das Cartas com interação as Funções do JS*/
+
 
