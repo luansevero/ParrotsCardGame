@@ -70,6 +70,10 @@ img {
 
 
 /*Efeito das Cartas*/
+.front-face:hover{
+  cursor: pointer;
+  opacity: 0.7;
+}
 .back-face {
   transform: rotateY(180deg);
 }
