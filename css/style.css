@@ -16,12 +16,27 @@ main{
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
 main > div{
   display: flex;
 }
-/*Cards*/
-
+/*Timer*/
+.timer-container{
+  border-radius: 10px;
+  right: 1%;
+  top: 1%;
+  position: absolute;
+  width: 100px;
+  height: 35px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+}
+.timer-container h1{
+  margin: 0 auto;
+  font-size: 35px;
+}
 
 /*Textos*/
 body h1{

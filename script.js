@@ -34,6 +34,7 @@ function createParrotCards(counter){
         <div class="back-face face"><img class="backImg" src="backCards/${arrayImgs[i]}.gif"/></div>`; //A cada div criada, ja armazena uma img aleatória.
         document.querySelector(`main`).appendChild(newParrotCard);
     }
+    timerstart(counter)
 }
 let rightcards = 0 //Contador de cartas certas
 let numberOfPlays = 0 // Contador de Jogadas
@@ -41,7 +42,7 @@ let cardsTurned = 0 //Identificador de 2 cartas selecionadas
 let imgcheck = [] // Conferir se tem é a mesma carta(Pela back-face img)
 let cardcheck = [] //Seleciona as 2 cartas que estão sendo avaliadas
 let img; // Seletor da back-face img
-function seeBackFace(element){
+function seeBackFace(element){ // Verificador de Cartas iguais
     numberOfPlays++
     const ParrotCards = document.querySelectorAll(`.card`)
     element.removeAttribute("onclick")
@@ -65,28 +66,49 @@ function seeBackFace(element){
             cardcheck = []
         }
         if(rightcards == ParrotCards.length){
-           setTimeout(win, 1500, numberOfPlays) 
+           setTimeout(win, 200, numberOfPlays) 
         } 
 }
-function unturned(cardcheck){
+function unturned(cardcheck){ //Função para desvirar as cartas
     for(let i = 0; i < cardcheck.length; i++){
         cardcheck[i].setAttribute(`onclick`, `seeBackFace(this)`)
         cardcheck[i].classList.remove(`toTurn`)
     }
 }
-
-function win(numberOfPlays){
-        alert(`Você ganhou em ${numberOfPlays} jogadas!`)
+function win(numberOfPlays){ // Função de termino de Jogo
+        const timer = document.querySelector(`.timer`)
+        alert(`Você ganhou em ${numberOfPlays} jogadas, e com o tempo de ${minute} minutos e ${seconds} segundos`)
         const answer = prompt(`Deseja jogar novamente? Responda "SIM" ou "NÃO"`)
         if(answer === "SIM"){
             let ParrotCards = document.querySelectorAll(`div`);
             for(let i = 0; i < ParrotCards.length; i++){
                 ParrotCards[i].parentNode.removeChild(ParrotCards[i]);
             }
+            seconds = 0
+            minute = 0
             rightcards = 0
             startGame()
         }
 }
-
-
- 
+let seconds = 0
+let minute = 0
+function timerstart(rightcards){
+    let timerInterval = setInterval(playTime, 1000, rightcards)
+}
+function playTime(cards){
+    let timer = document.querySelector(`.timer`)
+    while(rightcards != cards){
+        seconds++
+        if(seconds > 59){
+            seconds = 0
+            minute ++
+        }
+            timer.innerHTML = `0${minute}:0${seconds}`
+        if(seconds > 9 ){
+            timer.innerHTML = `0${minute}:${seconds}`
+        }
+        if(min > 9){
+            timer.innerHTML = `${minute}:${seconds}` 
+        }
+    }
+}
