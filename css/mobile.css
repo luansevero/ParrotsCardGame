@@ -1,0 +1,11 @@
+@media (max-width: 350px){
+    body h1{
+        font-style: normal;
+        font-weight: 700;
+        font-size: 36px;
+        line-height: 42px;
+        text-align: center;
+        letter-spacing: -0.004em;
+        color: #75B79E;  
+    }
+}

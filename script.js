@@ -1,6 +1,9 @@
-let cardNumber;
+
 function startGame(){
     numberOfPlays = 0
+    seconds = 0
+    minute = 0
+    rightcards = 0
     cardNumber = checkNumber()//Função - Número de Cartas digitada pelo Usuário!
     createParrotCards(cardNumber) //Função - CriandoCartas + Sorteando as Cartas                          
 }
@@ -78,22 +81,22 @@ function unturned(cardcheck){ //Função para desvirar as cartas
 function win(numberOfPlays){ // Função de termino de Jogo
         const timer = document.querySelector(`.timer`)
         alert(`Você ganhou em ${numberOfPlays} jogadas, e com o tempo de ${minute} minutos e ${seconds} segundos`)
-        const answer = prompt(`Deseja jogar novamente? Responda "SIM" ou "NÃO"`)
-        if(answer === "SIM"){
-            let ParrotCards = document.querySelectorAll(`div`);
+        clearInterval(timerInterval)
+        const answer = prompt(`Deseja jogar novamente? Digite "sim" ou "não"`)
+        if(answer === "sim"){
+            let ParrotCards = document.querySelectorAll(`.card`);
             for(let i = 0; i < ParrotCards.length; i++){
                 ParrotCards[i].parentNode.removeChild(ParrotCards[i]);
             }
-            seconds = 0
-            minute = 0
-            rightcards = 0
-            startGame()
+            timer.innerHTML = `00:00`
+            setTimeout(startGame(), 500)
         }
 }
 let seconds = 0
 let minute = 0
+let timerInterval = 0
 function timerstart(rightcards){
-    let timerInterval = setInterval(playTime, 1000, rightcards)
+     timerInterval = setInterval(playTime, 1000, rightcards)
 }
 function playTime(cards){
     let timer = document.querySelector(`.timer`)
@@ -111,4 +114,5 @@ function playTime(cards){
             timer.innerHTML = `${minute}:${seconds}` 
         }
     }
+    
 }
