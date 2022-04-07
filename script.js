@@ -1,5 +1,6 @@
 let cardNumber;
 function startGame(){
+    numberOfPlays = 0
     cardNumber = checkNumber()//Função - Número de Cartas digitada pelo Usuário!
     createParrotCards(cardNumber) //Função - CriandoCartas + Sorteando as Cartas                          
 }
@@ -25,7 +26,7 @@ function createParrotCards(counter){
 	return Math.random() - 0.5; 
     }
     for(let i = 0; i < counter ; i++){ //Criando cartas de acordo com o return da funão checkNumber()
-        newParrotCard = document.createElement(`div`); 
+        let newParrotCard = document.createElement(`div`); 
         newParrotCard.classList.add(`card`)
         newParrotCard.setAttribute(`onclick`, `seeBackFace(this)`)
         newParrotCard.innerHTML = `
@@ -76,6 +77,15 @@ function unturned(cardcheck){
 
 function win(numberOfPlays){
         alert(`Você ganhou em ${numberOfPlays} jogadas!`)
+        const answer = prompt(`Deseja jogar novamente? Responda "SIM" ou "NÃO"`)
+        if(answer === "SIM"){
+            let ParrotCards = document.querySelectorAll(`div`);
+            for(let i = 0; i < ParrotCards.length; i++){
+                ParrotCards[i].parentNode.removeChild(ParrotCards[i]);
+            }
+            rightcards = 0
+            startGame()
+        }
 }
 
 
