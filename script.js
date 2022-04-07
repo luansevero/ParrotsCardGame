@@ -1,7 +1,12 @@
 // Timer
+let seconds = 0
+let minute = 0
+let timerInterval;
+let timer = document.querySelector(`.timer`)
 // <!-- Fim do Timer -->
 //Começo do Jogo
 function startGame(){
+    timer.innerHTML = `00:00`
     document.querySelector(`.startAGame`).style.display = "none";
     document.querySelector(`.pop-up`).style.display = "none";
     numberOfPlays = 0
@@ -12,7 +17,7 @@ function startGame(){
     createParrotCards(cardNumber) //Função - CriandoCartas + Sorteando as Cartas                          
 }
 function checkNumber(){
-    let cardNumber = prompt("Bem vindo ao PARROT CARD GAME! Com quantas cartas você quer jogar? Digite números pares entre 4 e 14!")
+    let cardNumber = prompt("Com quantas cartas você quer jogar? Digite números pares entre 4 e 14!")
     cardNumber = Number(cardNumber)
     for(let i = 0; i == i; i++){ //Verificar se o número digito é válido!
         if(cardNumber % 2 == 0 && cardNumber <= 14 && cardNumber >= 4){
@@ -41,6 +46,7 @@ function createParrotCards(counter){
         <div class="back-face face"><img class="backImg" src="backCards/${arrayImgs[i]}.gif"/></div>`; //A cada div criada, ja armazena uma img aleatória.
         document.querySelector(`main`).appendChild(newParrotCard);
     }
+    timerInterval = setInterval(playTime, 1000, rightcards)
 }
 let rightcards = 0 //Contador de cartas certas
 let numberOfPlays = 0 // Contador de Jogadas
@@ -72,7 +78,7 @@ function seeBackFace(element){ // Verificador de Cartas iguais - Ativado por
             cardcheck = []
         }
         if(rightcards == ParrotCards.length){
-           setTimeout(results, 200, numberOfPlays) 
+           setTimeout(results, 500, numberOfPlays) 
         } 
 }
 function unturned(cardcheck){ //Função para desvirar as cartas
@@ -81,12 +87,13 @@ function unturned(cardcheck){ //Função para desvirar as cartas
         cardcheck[i].classList.remove(`toTurn`)
     }
 }
-function results(numberOfPlays){ // Função 
-        document.querySelector(`.pop-up`).style.display = "flex";
-        document.querySelector(`.results`).style.display = "flex";
-        let text = document.querySelectorAll(`.curiosidades h3`)
-        text[0].innerHTML = `Você terminou o jogo com ${numberOfPlays} jogadas!`
-        text[1].innerHTML = `Você levou apenas ${minute} minutos e ${seconds} segundos para terminar o jogo! `
+function results(numberOfPlays){ // Função
+    clearInterval(timerInterval)
+    document.querySelector(`.pop-up`).style.display = "flex";
+    document.querySelector(`.results`).style.display = "flex";
+    let text = document.querySelectorAll(`.curiosidades h3`)
+    text[0].innerHTML = `Você terminou o jogo com ${numberOfPlays} jogadas!`
+    text[1].innerHTML = `Você levou apenas ${minute} minutos e ${seconds} segundos para terminar o jogo! `
 }
 function playAgain(){ //Botão Jogar Novamente
     document.querySelector(`.pop-up`).style.display = "flex";
@@ -103,6 +110,21 @@ function cleanCards(){
     let ParrotCards = document.querySelectorAll(`.card`);
     for(let i = 0; i < ParrotCards.length; i++){
         ParrotCards[i].parentNode.removeChild(ParrotCards[i]);
+    }
+}
+
+function playTime(cards){
+    seconds++
+    if(seconds > 59){
+        seconds = 0
+        minute ++
+    }
+    timer.innerHTML = `0${minute}:0${seconds}`
+    if(seconds > 9 ){
+    timer.innerHTML = `0${minute}:${seconds}`
+    }
+    if(min > 9){
+        timer.innerHTML = `${minute}:${seconds}` 
     }
 }
 
