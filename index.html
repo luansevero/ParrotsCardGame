@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mobile.css">
 </head>
-<body onload ="startGame()">
+<body onload ="startGam()">
     <header class="topbar">
         <h1>PARROT CARD GAME</h1>
         <div class="startgame-container">
@@ -21,7 +21,7 @@
     <main>
         
     </main>
-    <section class ="extra endgame">
+    <section class ="extra pop-up">
         <div class="extra popUp-container">
             <div class="results">
                 <header class="popUp-topbar">
@@ -42,6 +42,26 @@
                     <div class="playAgain click" onclick="playAgain()"><h3>Jogar novamente</h3></div>
                     <div class="closeWindown click" onclick="closeWindown()"><h3>Fechar janela</h3></div>
                 </div>
+            </div>
+            <div class="startAGame">
+                <header class="newgame">
+                    <h2>Como Jogar:</h2>
+                    <div class="rules">
+                        <img src="/Archives/parrotlogo.png">
+                        <h3>Escolha duas cartas para elas desvirarem</h3>
+                    </div>
+                    <div class="rules">
+                        <img src="/Archives/parrotlogo.png">
+                        <h3>Se formarem um par, elas são removidas do jogo. Caso contrário, elas são viradas novamente</h3>
+                    </div>
+                    <div class="rules">
+                        <img src="/Archives/parrotlogo.png">
+                        <h3>Encontre todos os pares para remover todas as cartas do jogo.</h3>
+                    </div>
+                    <div class="button-newgame click" onclick="startGame()">
+                        <h3>Novo Jogo</h3>
+                    </div>
+                </header>
             </div>
         </div>
     </section>

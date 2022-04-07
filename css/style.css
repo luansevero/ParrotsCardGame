@@ -111,13 +111,13 @@ img {
 }
 
 /*Extras - Fora do Projeto!*/
-.endgame{
+.pop-up{
   top: 0;
   left: 0;
   position: fixed;
   width: 100%;
   height: 100%;
-  display: none;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -128,7 +128,13 @@ img {
   background-color: #fffcf3;
   box-shadow: 0 0 5px 2px rgb(194, 194, 194);
 }
-
+.results{
+  display: none;
+  flex-direction: column;
+}
+.startAGame{
+  display: flex;
+}
 .popUp-topbar{
   display: flex;
   flex-direction: column;
@@ -144,18 +150,22 @@ img {
   position: absolute;
   top: 110px;
 }
+.newgame,
 .curiosidades{
   margin: 20px 20px;
 }
+.rules img,
 .curiosidades img{
   width: 40px;
   height: 40px;
 }
+.rules,
 .howmanyplays,
 .timeplay{
   display: flex;
   align-items: center;
 }
+.rules h3,
 .curiosidades h3{
   margin-top: 8px;
   font-style: normal;
@@ -166,17 +176,32 @@ img {
 }
 
 /*Botoes*/
-.buttons{
+.button-newgame{
   display: flex;
   margin: 0 auto;
+}
+.buttons{
+  display: flex;
   justify-content: space-evenly;
 }
+.button-newgame h3,
 .buttons h3{
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
   color: #fffcf3;
+}
+.button-newgame{
+  margin-top: 35px;
+  box-shadow: 0 0 5px 2px rgb(194, 194, 194);
+  background-color: #41a07b;
+  border-radius: 100px;
+  width: 160px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .playAgain,
 .closeWindown{

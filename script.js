@@ -2,6 +2,8 @@
 // <!-- Fim do Timer -->
 //Começo do Jogo
 function startGame(){
+    document.querySelector(`.startAGame`).style.display = "none";
+    document.querySelector(`.pop-up`).style.display = "none";
     numberOfPlays = 0
     seconds = 0
     minute = 0
@@ -80,23 +82,29 @@ function unturned(cardcheck){ //Função para desvirar as cartas
     }
 }
 function results(numberOfPlays){ // Função 
-        document.querySelector(`.endgame`).style.display = "flex";
+        document.querySelector(`.pop-up`).style.display = "flex";
+        document.querySelector(`.results`).style.display = "flex";
         let text = document.querySelectorAll(`.curiosidades h3`)
         text[0].innerHTML = `Você terminou o jogo com ${numberOfPlays} jogadas!`
         text[1].innerHTML = `Você levou apenas ${minute} minutos e ${seconds} segundos para terminar o jogo! `
 }
 function playAgain(){ //Botão Jogar Novamente
+    document.querySelector(`.pop-up`).style.display = "flex";
     closeWindown()
+    cleanCards()
+    setTimeout(startGame(), 500)
+}
+function closeWindown(){ //Botão fechar resultado!
+    cleanCards()
+    document.querySelector(`.results`).style.display = "none";
+    document.querySelector(`.startAGame`).style.display = "flex";
+}
+function cleanCards(){
     let ParrotCards = document.querySelectorAll(`.card`);
     for(let i = 0; i < ParrotCards.length; i++){
         ParrotCards[i].parentNode.removeChild(ParrotCards[i]);
     }
-    setTimeout(startGame(), 500)
 }
-function closeWindown(){ //Botão fechar resultado!
-    document.querySelector(`.endgame`).style.display = "none";
-}
-
 
 
 //Functions Extra
