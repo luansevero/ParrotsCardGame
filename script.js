@@ -3,12 +3,26 @@ let seconds = 0
 let minute = 0
 let timerInterval;
 let timer = document.querySelector(`.timer`)
+function playTime(cards){
+    seconds++
+    if(seconds > 59){
+        seconds = 0
+        minute ++
+    }
+    timer.innerHTML = `0${minute}:0${seconds}`
+    if(seconds > 9 ){
+    timer.innerHTML = `0${minute}:${seconds}`
+    }
+    if(minute > 9){
+        timer.innerHTML = `${minute}:${seconds}` 
+    }
+}
 // <!-- Fim do Timer -->
 //Começo do Jogo
 function startGame(){
-    timer.innerHTML = `00:00`
     document.querySelector(`.startAGame`).style.display = "none";
     document.querySelector(`.pop-up`).style.display = "none";
+    document.querySelector(`.gamerulescontainer`).style.display = "none";
     numberOfPlays = 0
     seconds = 0
     minute = 0
@@ -50,30 +64,25 @@ function createParrotCards(counter){
 }
 let rightcards = 0 //Contador de cartas certas
 let numberOfPlays = 0 // Contador de Jogadas
-let cardsTurned = 0 //Identificador de 2 cartas selecionadas
 let imgcheck = [] // Conferir se tem é a mesma carta(Pela back-face img)
 let cardcheck = [] //Seleciona as 2 cartas que estão sendo avaliadas
-let img; // Seletor da back-face img
 function seeBackFace(element){ // Verificador de Cartas iguais - Ativado por
     numberOfPlays++
     const ParrotCards = document.querySelectorAll(`.card`)
     element.removeAttribute("onclick")
     element.classList.add(`toTurn`)
-    cardsTurned++
-    img = element.querySelector(`.backImg`)
-    imgcheck.push(img)
+    imgcheck.push(element.querySelector(`.backImg`))
     cardcheck.push(element)
-        if(cardsTurned == 2){ // Comparar as 2 cartas
+        if(cardcheck.length == 2){ // Comparar as 2 cartas
             if(imgcheck[0].src == imgcheck[1].src){ //Se tiver a mesma source =  true
-                for(let i = 0; i < cardcheck.length; i++){
+                for(let i = 0; i < cardcheck.length; i++){ // Trocas as classes
                     cardcheck[i].classList.remove(`toTurn`)
                     cardcheck[i].classList.add(`turned`)
                 }
                 rightcards += 2
             } else { // False - desvira as cartas
                 setTimeout(unturned, 1000, cardcheck)
-            }
-            cardsTurned = 0  //Resetando todos os itens
+            } //Resetando as ARRAYS
             imgcheck = []  
             cardcheck = []
         }
@@ -96,37 +105,25 @@ function results(numberOfPlays){ // Função
     text[1].innerHTML = `Você levou apenas ${minute} minutos e ${seconds} segundos para terminar o jogo! `
 }
 function playAgain(){ //Botão Jogar Novamente
-    document.querySelector(`.pop-up`).style.display = "flex";
-    closeWindown()
-    cleanCards()
+    cleanGame()
     setTimeout(startGame(), 500)
 }
 function closeWindown(){ //Botão fechar resultado!
-    cleanCards()
+    cleanGame()
     document.querySelector(`.results`).style.display = "none";
     document.querySelector(`.startAGame`).style.display = "flex";
+    document.querySelector(`.gamerulescontainer`).style.display = "flex";
 }
-function cleanCards(){
+function cleanGame(){
+    numberOfPlays = 0
+    seconds = 0
+    minute = 0
+    rightcards = 0
+    timer.innerHTML = `00:00`
+    document.querySelector(`.pop-up`).style.display = "none";
     let ParrotCards = document.querySelectorAll(`.card`);
     for(let i = 0; i < ParrotCards.length; i++){
         ParrotCards[i].parentNode.removeChild(ParrotCards[i]);
     }
 }
 
-function playTime(cards){
-    seconds++
-    if(seconds > 59){
-        seconds = 0
-        minute ++
-    }
-    timer.innerHTML = `0${minute}:0${seconds}`
-    if(seconds > 9 ){
-    timer.innerHTML = `0${minute}:${seconds}`
-    }
-    if(min > 9){
-        timer.innerHTML = `${minute}:${seconds}` 
-    }
-}
-
-
-//Functions Extra

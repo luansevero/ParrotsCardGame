@@ -3,7 +3,6 @@
 /*Page set*/
 body{
     background-color: #eef9bf;
-    opacity: 0.9; /*Mudar sua opacity*/
 }
 .topbar{
     height: 100%;
@@ -11,7 +10,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 40px 10px 8px 10px; 
+    padding: 40px 10px 8px 10px;
 }
 main{
   display: flex;
@@ -54,8 +53,9 @@ body h1, h2{
 body h2{
   font-size: 30px;
 }
-
-
+.topbar h2{
+  line-height: 35px;
+}
 /*Cartas*/
 .card {
   margin: 34px;
@@ -87,8 +87,6 @@ img {
 .show{
     display: flex;
 }
-
-
 /*Efeito das Cartas*/
 .back-face {
   transform: rotateY(180deg);
@@ -112,19 +110,27 @@ img {
 
 /*Extras - Fora do Projeto!*/
 .pop-up{
-  top: 0;
-  left: 0;
   position: fixed;
+  top: 0;
+  background-color: hsla(71, 83%, 86%, 0.5);
+  z-index: 1;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
+.gamerulescontainer{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gamerules,
 .popUp-container{
+  margin-top: 30px;
   border-radius: 20px;
   width: 400px;
-  height: 350px;
   background-color: #fffcf3;
   box-shadow: 0 0 5px 2px rgb(194, 194, 194);
 }
@@ -135,6 +141,7 @@ img {
 .startAGame{
   display: flex;
 }
+
 .popUp-topbar{
   display: flex;
   flex-direction: column;
@@ -149,6 +156,11 @@ img {
 .popUp-topbar h2{
   position: absolute;
   top: 110px;
+}
+.newgame{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .newgame,
 .curiosidades{
@@ -183,6 +195,7 @@ img {
 .buttons{
   display: flex;
   justify-content: space-evenly;
+  margin-bottom: 20px;
 }
 .button-newgame h3,
 .buttons h3{
@@ -193,7 +206,7 @@ img {
   color: #fffcf3;
 }
 .button-newgame{
-  margin-top: 35px;
+  margin-top: 20px;
   box-shadow: 0 0 5px 2px rgb(194, 194, 194);
   background-color: #41a07b;
   border-radius: 100px;
@@ -214,6 +227,8 @@ img {
   align-items: center;
   justify-content: center;
 }
+
+
 /*Hovers - Somente em ONCLICK*/
 .click:hover{
   cursor: pointer;
