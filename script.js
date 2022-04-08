@@ -20,10 +20,6 @@ function timePlayed(){
 }
 //
 function startGame(){
-    numberOfPlays = 0
-    seconds = 0
-    minute = 0
-    rightcards = 0
     cardNumber = checkNumber()//Função - Número de Cartas digitada pelo Usuário!
     createParrotCards(cardNumber) //Função - CriandoCartas + Sorteando as Cartas                          
 }
@@ -56,7 +52,6 @@ function createParrotCards(counter){
     }
     timerInterval = setInterval(timePlayed, 1000)
 }
-let rightcards = 0 //Contador de cartas certas
 let numberOfPlays = 0 // Contador de Jogadas
 let imgcheck = []
 function seeBackFace(element){ // Verificador de Cartas iguais - Ativado por
@@ -68,13 +63,13 @@ function seeBackFace(element){ // Verificador de Cartas iguais - Ativado por
             let cardsToCheck = document.querySelectorAll(".toTurn")
             if(imgcheck[0].src == imgcheck[1].src){ //Se tiver a mesma source =  true
                 cardsToCheck.forEach(rightParrots)
-                rightcards += 2
             } else { // False - desvira as cartas
                 setTimeout(function(){cardsToCheck.forEach(unturned)}, 1000,)
             } //Resetando as ARRAYS
             imgcheck = []  
         }
-        if(rightcards == cardNumber){
+        let allturned = document.querySelectorAll(`.turned`)
+        if(allturned.length == cardNumber){
            setTimeout(results, 500, numberOfPlays) 
     } 
 }
@@ -91,8 +86,15 @@ function results(numberOfPlays){ // Função de termino de Jogo
     alert(`Você ganhou em ${numberOfPlays} jogadas, e com o tempo de ${minute} minutos e ${seconds} segundos`)
     const answer = prompt(`Deseja jogar novamente? Digite "sim" ou "não"`)
     if(answer === "sim"){
-        document.querySelector("main").innerHTML = ""
-        timer.innerHTML = `00:00`
+        resetGame()
         setTimeout(startGame(), 500)
     }
+}
+function resetGame(){
+    numberOfPlays = 0
+    seconds = 0
+    minute = 0
+    rightcards = 0
+    document.querySelector("main").innerHTML = ""
+    timer.innerHTML = `00:00`
 }
