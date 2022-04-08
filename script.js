@@ -13,17 +13,17 @@ function timePlayed(){
     return timer
 }
 function startGame(){
-    cardNumber = checkNumber()//Número de Cartas digitada pelo Usuário!
-    createParrotCards(cardNumber) //CriandoCartas + Sorteando as Cartas
+    numberOfCards = checkNumber()//Número de Cartas digitada pelo Usuário!
+    createParrotCards(numberOfCards) //CriandoCartas + Sorteando as Cartas
     timerInterval = setInterval(timePlayed, 1000)//Começar o timer                       
 }
 function checkNumber(){
-    let cardNumber = prompt("Bem vindo ao PARROT CARD GAME! Com quantas cartas você quer jogar? Digite um número par entre 4 e 14!")
-    cardNumber = Number(cardNumber)
-    while(cardNumber % 2 != 0 || cardNumber > 14 || cardNumber < 4){
-        cardNumber = prompt("Número inválido!Digite um número par entre 4 e 14!")
+    let numberOfCards = prompt("Bem vindo ao PARROT CARD GAME! Com quantas cartas você quer jogar? Digite um número par entre 4 e 14!")
+    numberOfCards = Number(numberOfCards)
+    while(numberOfCards % 2 != 0 || numberOfCards > 14 || numberOfCards < 4){
+        numberOfCards = prompt("Número inválido!Digite um número par entre 4 e 14!")
     }
-    return cardNumber
+    return numberOfCards
 }
 function createParrotCards(counter){
     const arrayImgs = ["1","2","3","4","5","6","7"]
@@ -62,7 +62,7 @@ function seeBackFace(element){ // Verificador de Cartas iguais - Ativado por
                 setTimeout(function(){cardsToCheck.forEach(unturned)}, 1000)
             }
             let allturned = document.querySelectorAll(`.turned`)
-            if(allturned.length == cardNumber){
+            if(allturned.length == numberOfCards){
             setTimeout(results, 500, numberOfPlays)
             }
         }
