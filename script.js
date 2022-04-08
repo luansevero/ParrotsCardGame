@@ -10,13 +10,7 @@ function timePlayed(){
         seconds = 0
         minute ++
     }
-        timer.innerHTML = `0${minute}:0${seconds}`
-    if(seconds > 9 ){
-        timer.innerHTML = `0${minute}:${seconds}`
-    }
-    if(minute > 9){
-        timer.innerHTML = `${minute}:${seconds}` 
-    }
+    timer.innerHTML = `${("0" + minute).slice(-2)}:${("0" + seconds).slice(-2)}`
 }
 //
 function startGame(){
