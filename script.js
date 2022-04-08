@@ -2,7 +2,6 @@
 let seconds = 0
 let minute = 0
 let timerInterval;
-let timer = document.querySelector(`.timer`)
 function timePlayed(){
     let timer = document.querySelector(`.timer`)
     seconds++
@@ -11,69 +10,74 @@ function timePlayed(){
         minute ++
     }
     timer.innerHTML = `${("0" + minute).slice(-2)}:${("0" + seconds).slice(-2)}`
+    return timer
 }
-//
 function startGame(){
-    cardNumber = checkNumber()//Função - Número de Cartas digitada pelo Usuário!
-    createParrotCards(cardNumber) //Função - CriandoCartas + Sorteando as Cartas                          
+    cardNumber = checkNumber()//Número de Cartas digitada pelo Usuário!
+    createParrotCards(cardNumber) //CriandoCartas + Sorteando as Cartas
+    timerInterval = setInterval(timePlayed, 1000)//Começar o timer                       
 }
 function checkNumber(){
-    let cardNumber = prompt("Bem vindo ao PARROT CARD GAME! Com quantas cartas você quer jogar? Digite números pares entre 4 e 14!")
+    let cardNumber = prompt("Bem vindo ao PARROT CARD GAME! Com quantas cartas você quer jogar? Digite um número par entre 4 e 14!")
     cardNumber = Number(cardNumber)
     while(cardNumber % 2 != 0 || cardNumber > 14 || cardNumber < 4){
-        cardNumber = prompt("Número inválido!Digite número pares entre 4 e 14!")
+        cardNumber = prompt("Número inválido!Digite um número par entre 4 e 14!")
     }
     return cardNumber
 }
 function createParrotCards(counter){
-    const arrayImgs = [] // Vai armazenar o conteúdo da parte de tras das cartas.
+    const arrayImgs = ["1","2","3","4","5","6","7"]
+    arrayImgs.sort(comparador)
+    const arrayImgsSorted = [] // Vai armazenar o conteúdo da parte de tras das cartas.
     for(let i = 0; i < counter/2; i++){ //O contador é dividido por 2, pois são 2 cartas iguais
-        arrayImgs.push(i + 1)
-        arrayImgs.push(i + 1)
+        arrayImgsSorted.push(arrayImgs[i])
+        arrayImgsSorted.push(arrayImgs[i])
     }
-    arrayImgs.sort(comparador) // Embaralha as imgs que estão na array
-    function comparador() { 
-	return Math.random() - 0.5; 
-    }
+    arrayImgsSorted.sort(comparador) // Embaralha as imgs que estão na array
     for(let i = 0; i < counter ; i++){ //Criando cartas de acordo com o return da funão checkNumber()
         let newParrotCard = document.createElement(`div`); 
         newParrotCard.classList.add(`card`)
         newParrotCard.setAttribute(`onclick`, `seeBackFace(this)`)
         newParrotCard.innerHTML = `
-        <div class="front-face face"><img src="archives/front.png" /></div>
-        <div class="back-face face"><img class="backImg" src="backCards/${arrayImgs[i]}.gif"/></div>`; //A cada div criada, ja armazena uma img aleatória.
+        <div class="front-face face"><img src="frontcard/front.png" /></div>
+        <div class="back-face face"><img class="backImg" src="backCards/${arrayImgsSorted[i]}.gif"/></div>`; //A cada div criada, ja armazena uma img aleatória.
         document.querySelector(`main`).appendChild(newParrotCard);
     }
-    timerInterval = setInterval(timePlayed, 1000)
+}
+function comparador() { 
+	return Math.random() - 0.5; 
 }
 let numberOfPlays = 0 // Contador de Jogadas
 let imgcheck = []
 function seeBackFace(element){ // Verificador de Cartas iguais - Ativado por
-    numberOfPlays++
-    element.removeAttribute("onclick")
-    element.classList.add(`toTurn`)
-    imgcheck.push(element.querySelector(`.backImg`))
+    if( 2 > imgcheck.length){
+        numberOfPlays++
+        element.classList.add(`toTurn`)
+        imgcheck.push(element.querySelector(`.backImg`))
         if(imgcheck.length == 2){ // Comparar as 2 cartas
             let cardsToCheck = document.querySelectorAll(".toTurn")
-            if(imgcheck[0].src == imgcheck[1].src){ //Se tiver a mesma source =  true
+            if(imgcheck[0].src == imgcheck[1].src){
                 cardsToCheck.forEach(rightParrots)
-            } else { // False - desvira as cartas
-                setTimeout(function(){cardsToCheck.forEach(unturned)}, 1000,)
-            } //Resetando as ARRAYS
-            imgcheck = []  
+            } else {
+                setTimeout(function(){cardsToCheck.forEach(unturned)}, 1000)
+            }
+            let allturned = document.querySelectorAll(`.turned`)
+            if(allturned.length == cardNumber){
+            setTimeout(results, 500, numberOfPlays)
+            }
         }
-        let allturned = document.querySelectorAll(`.turned`)
-        if(allturned.length == cardNumber){
-           setTimeout(results, 500, numberOfPlays) 
     } 
 }
-function rightParrots(ParrotCard){
+function rightParrots(ParrotCard){ //Função para duplicatas corretas
     ParrotCard.classList.remove("toTurn")
     ParrotCard.classList.add("turned")
+    ParrotCard.removeAttribute("onclick")
+    imgcheck = []
 }
-function unturned(ParrotCard){ //Função para desvirar as cartas
+function unturned(ParrotCard){ //Função para duplicatas erradas
     ParrotCard.setAttribute(`onclick`, `seeBackFace(this)`)
     ParrotCard.classList.remove(`toTurn`)
+    imgcheck = []
 }
 function results(numberOfPlays){ // Função de termino de Jogo
     clearInterval(timerInterval)
@@ -84,11 +88,11 @@ function results(numberOfPlays){ // Função de termino de Jogo
         setTimeout(startGame(), 500)
     }
 }
-function resetGame(){
+function resetGame(){ //Função para limpar as variáveis e outros
+    timePlayed().innerHTML = `00:00`
     numberOfPlays = 0
     seconds = 0
     minute = 0
     rightcards = 0
     document.querySelector("main").innerHTML = ""
-    timer.innerHTML = `00:00`
 }
