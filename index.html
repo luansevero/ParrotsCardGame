@@ -9,67 +9,15 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mobile.css">
 </head>
-<body>
-    <header class="topbar">
+<body onload ="startGame()">
+    <header>
         <h1>PARROT CARD GAME</h1>
-        <div class="startgame-container">
-          <h2>O seu jogo da memória favorito!</h2>
-        </div>
-        <div class="timer-container"><h1 class="timer">00:00</h1></div> 
-
+        <div class="timer-container"><h1 class="timer">00:00</h1></div>
     </header>
-    <div class="gamerulescontainer">
-           <div class="extra gamerules">
-                <div class="startAGame">
-                    <header class="newgame">
-                        <h2>Como Jogar:</h2>
-                        <div class="rules">
-                            <img src="/Archives/parrotlogo.png">
-                            <h3>Escolha duas cartas para elas desvirarem</h3>
-                        </div>
-                        <div class="rules">
-                            <img src="/Archives/parrotlogo.png">
-                            <h3>Se formarem um par, elas são removidas do jogo. Caso contrário, elas são viradas novamente</h3>
-                        </div>
-                        <div class="rules">
-                            <img src="/Archives/parrotlogo.png">
-                            <h3>Encontre todos os pares para remover todas as cartas do jogo.</h3>
-                        </div>
-                        <div class="button-newgame click" onclick="startGame()">
-                            <h3>Novo Jogo</h3>
-                        </div>
-                    </header>
-                </div>
-            </div>
-    </div>
 
     <main>
         
     </main>
-    <section class ="extra pop-up">
-        <div class="extra popUp-container">
-            <div class="results">
-                <header class="popUp-topbar">
-                    <img class="trophy" src="Archives/trophy gif.gif">
-                    <h2>Parabéns, você ganhou!</h2>
-                </header>
-                <div class="curiosidades">
-                    <div class="howmanyplays">
-                        <img src="/Archives/parrotlogo.png">
-                        <h3>Você terminou jogo com X cliques</h3>
-                    </div>
-                    <div class="timeplay">
-                        <img src="/Archives/parrotlogo.png">
-                        <h3>Você demorou x minutos e x segundos para terminar o jogo</h3>
-                    </div>
-                </div>
-                <div class="buttons">
-                    <div class="playAgain click" onclick="playAgain()"><h3>Jogar novamente</h3></div>
-                    <div class="closeWindown click" onclick="closeWindown()"><h3>Fechar janela</h3></div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <script src="script.js"></script>
 </body>

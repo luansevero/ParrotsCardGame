@@ -1,4 +1,4 @@
-@media (max-width: 440px){
+@media (max-width: 350px){
     body h1{
         font-style: normal;
         font-weight: 700;
@@ -7,24 +7,5 @@
         text-align: center;
         letter-spacing: -0.004em;
         color: #75B79E;  
-    }
-    main{
-        flex-direction: column;
-    }
-    .gamerules,
-    .popUp-container{
-        border-radius: 20px;
-        width: 90%;
-        background-color: #fffcf3;
-        box-shadow: 0 0 5px 2px rgb(194, 194, 194);
-      }
-    .rules h3,
-    .curiosidades h3{
-        margin-top: 8px;
-        font-style: normal;
-        font-weight: 700;
-        font-size: 16px;
-        letter-spacing: -0.004em;
-        color: #75B79E;
     }
 }

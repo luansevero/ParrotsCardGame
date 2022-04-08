@@ -1,28 +1,25 @@
-// Timer
+//Timer
 let seconds = 0
 let minute = 0
 let timerInterval;
 let timer = document.querySelector(`.timer`)
-function playTime(cards){
+function timePlayed(){
+    let timer = document.querySelector(`.timer`)
     seconds++
     if(seconds > 59){
         seconds = 0
         minute ++
     }
-    timer.innerHTML = `0${minute}:0${seconds}`
+        timer.innerHTML = `0${minute}:0${seconds}`
     if(seconds > 9 ){
-    timer.innerHTML = `0${minute}:${seconds}`
+        timer.innerHTML = `0${minute}:${seconds}`
     }
     if(minute > 9){
         timer.innerHTML = `${minute}:${seconds}` 
     }
 }
-// <!-- Fim do Timer -->
-//Começo do Jogo
+//
 function startGame(){
-    document.querySelector(`.startAGame`).style.display = "none";
-    document.querySelector(`.pop-up`).style.display = "none";
-    document.querySelector(`.gamerulescontainer`).style.display = "none";
     numberOfPlays = 0
     seconds = 0
     minute = 0
@@ -31,12 +28,9 @@ function startGame(){
     createParrotCards(cardNumber) //Função - CriandoCartas + Sorteando as Cartas                          
 }
 function checkNumber(){
-    let cardNumber = prompt("Com quantas cartas você quer jogar? Digite números pares entre 4 e 14!")
+    let cardNumber = prompt("Bem vindo ao PARROT CARD GAME! Com quantas cartas você quer jogar? Digite números pares entre 4 e 14!")
     cardNumber = Number(cardNumber)
-    for(let i = 0; i == i; i++){ //Verificar se o número digito é válido!
-        if(cardNumber % 2 == 0 && cardNumber <= 14 && cardNumber >= 4){
-            break
-        }
+    while(cardNumber % 2 != 0 || cardNumber > 14 || cardNumber < 4){
         cardNumber = prompt("Número inválido!Digite número pares entre 4 e 14!")
     }
     return cardNumber
@@ -56,74 +50,49 @@ function createParrotCards(counter){
         newParrotCard.classList.add(`card`)
         newParrotCard.setAttribute(`onclick`, `seeBackFace(this)`)
         newParrotCard.innerHTML = `
-        <div class="front-face face click"><img src="archives/front.png" /></div>
+        <div class="front-face face"><img src="archives/front.png" /></div>
         <div class="back-face face"><img class="backImg" src="backCards/${arrayImgs[i]}.gif"/></div>`; //A cada div criada, ja armazena uma img aleatória.
         document.querySelector(`main`).appendChild(newParrotCard);
     }
-    timerInterval = setInterval(playTime, 1000, rightcards)
+    timerInterval = setInterval(timePlayed, 1000)
 }
 let rightcards = 0 //Contador de cartas certas
 let numberOfPlays = 0 // Contador de Jogadas
-let imgcheck = [] // Conferir se tem é a mesma carta(Pela back-face img)
-let cardcheck = [] //Seleciona as 2 cartas que estão sendo avaliadas
+let imgcheck = []
 function seeBackFace(element){ // Verificador de Cartas iguais - Ativado por
     numberOfPlays++
-    const ParrotCards = document.querySelectorAll(`.card`)
     element.removeAttribute("onclick")
     element.classList.add(`toTurn`)
     imgcheck.push(element.querySelector(`.backImg`))
-    cardcheck.push(element)
-        if(cardcheck.length == 2){ // Comparar as 2 cartas
+        if(imgcheck.length == 2){ // Comparar as 2 cartas
+            let cardsToCheck = document.querySelectorAll(".toTurn")
             if(imgcheck[0].src == imgcheck[1].src){ //Se tiver a mesma source =  true
-                for(let i = 0; i < cardcheck.length; i++){ // Trocas as classes
-                    cardcheck[i].classList.remove(`toTurn`)
-                    cardcheck[i].classList.add(`turned`)
-                }
+                cardsToCheck.forEach(rightParrots)
                 rightcards += 2
             } else { // False - desvira as cartas
-                setTimeout(unturned, 1000, cardcheck)
+                setTimeout(function(){cardsToCheck.forEach(unturned)}, 1000,)
             } //Resetando as ARRAYS
             imgcheck = []  
-            cardcheck = []
         }
-        if(rightcards == ParrotCards.length){
+        if(rightcards == cardNumber){
            setTimeout(results, 500, numberOfPlays) 
-        } 
+    } 
 }
-function unturned(cardcheck){ //Função para desvirar as cartas
-    for(let i = 0; i < cardcheck.length; i++){
-        cardcheck[i].setAttribute(`onclick`, `seeBackFace(this)`)
-        cardcheck[i].classList.remove(`toTurn`)
-    }
+function rightParrots(ParrotCard){
+    ParrotCard.classList.remove("toTurn")
+    ParrotCard.classList.add("turned")
 }
-function results(numberOfPlays){ // Função
+function unturned(ParrotCard){ //Função para desvirar as cartas
+    ParrotCard.setAttribute(`onclick`, `seeBackFace(this)`)
+    ParrotCard.classList.remove(`toTurn`)
+}
+function results(numberOfPlays){ // Função de termino de Jogo
     clearInterval(timerInterval)
-    document.querySelector(`.pop-up`).style.display = "flex";
-    document.querySelector(`.results`).style.display = "flex";
-    let text = document.querySelectorAll(`.curiosidades h3`)
-    text[0].innerHTML = `Você terminou o jogo com ${numberOfPlays} jogadas!`
-    text[1].innerHTML = `Você levou apenas ${minute} minutos e ${seconds} segundos para terminar o jogo! `
-}
-function playAgain(){ //Botão Jogar Novamente
-    cleanGame()
-    setTimeout(startGame(), 500)
-}
-function closeWindown(){ //Botão fechar resultado!
-    cleanGame()
-    document.querySelector(`.results`).style.display = "none";
-    document.querySelector(`.startAGame`).style.display = "flex";
-    document.querySelector(`.gamerulescontainer`).style.display = "flex";
-}
-function cleanGame(){
-    numberOfPlays = 0
-    seconds = 0
-    minute = 0
-    rightcards = 0
-    timer.innerHTML = `00:00`
-    document.querySelector(`.pop-up`).style.display = "none";
-    let ParrotCards = document.querySelectorAll(`.card`);
-    for(let i = 0; i < ParrotCards.length; i++){
-        ParrotCards[i].parentNode.removeChild(ParrotCards[i]);
+    alert(`Você ganhou em ${numberOfPlays} jogadas, e com o tempo de ${minute} minutos e ${seconds} segundos`)
+    const answer = prompt(`Deseja jogar novamente? Digite "sim" ou "não"`)
+    if(answer === "sim"){
+        document.querySelector("main").innerHTML = ""
+        timer.innerHTML = `00:00`
+        setTimeout(startGame(), 500)
     }
 }
-
