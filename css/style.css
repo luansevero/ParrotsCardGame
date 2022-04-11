@@ -11,24 +11,33 @@ header{
     align-items: center;
     padding: 40px 10px 8px 10px; 
 }
-main{
+.board{
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
 }
-main > div{
+.board > div{
   display: flex;
 }
 /*Timer*/
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 .timer-container{
   border-radius: 10px;
-  right: 0;
-  top: 0;
-  margin: 10px;
-  position: fixed;
-  width: 100px;
+  bottom: 0;
+  left: 47%;
+  margin-bottom: 10px;
+  width: 130px;
   height: 35px;
   background-color: white;
   box-shadow: 1px 1px 1px 1px rgba(0,0,0,.3);
@@ -40,9 +49,15 @@ main > div{
   margin: 0 auto;
   font-size: 35px;
 }
+ion-icon{
+  margin-top: 10px;
+  width: 33px;
+  height: 33px;
+  color: #75B79E;
+}
 
 /*Textos*/
-body h1{
+body h1, h2{
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
@@ -52,9 +67,7 @@ body h1{
     color: #75B79E;
     text-align: center;
 }
-
-
-/*Cartas*/
+/*<--Main Board - Cards!-->*/
 .card {
   margin: 0px 17px;
   margin-top: 34px;
@@ -82,14 +95,8 @@ img {
   width: 100px;
   height: 100px;
 }
-/*Javascript class*/
-.show{
-    display: flex;
-}
-
-
 /*Efeito das Cartas*/
-.front-face:hover{
+.click:hover{
   cursor: pointer;
   opacity: 0.7;
 }
@@ -106,9 +113,221 @@ img {
 .toTurn .front-face{
   transform: rotateY(-180deg);
 }
+/*Efeito para a carta não virar novamente*/
 .turned .back-face{
   transform: rotateY(0deg);
 }
 .turned .front-face{
   transform: rotateY(-180deg);
+}
+/*<--Fim Main Board - Cards!-->*/
+/*Main General Configs*/
+
+/*<--Regras e Modos de Jogo!-->*/
+.mainpage{
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rules-container{
+  display: flex;
+  margin-top: 30px;
+  padding: 0px 20px 20px 20px;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 400px;
+  height: 100%;
+  background-color: #fffcf3;
+  box-shadow: 0 0 5px 2px rgb(194, 194, 194);
+  position: relative;
+}
+
+.normalgamemode img{
+  margin-top: 10px;
+  width: 140px;
+  height: 100px;
+}
+.pensarapido img{
+  margin-top: 10px;
+  width: 140px;
+  height: 100px;
+}
+.container-column{
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+}
+.gamemodes{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  padding: 0px 20px 20px 20px;
+  border-radius: 20px;
+  width: 400px;
+  height: 100%;
+  background-color: #fffcf3;
+  box-shadow: 0 0 5px 2px rgb(194, 194, 194);
+  position: relative;
+
+}
+.pensarapido,
+.normalgamemode{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 190px;
+  height: 300px;
+}
+.pensarapido h2,
+.normalgamemode h2{
+  font-size: 20px;
+  position: absolute;
+  top: 90px;
+}
+.pensarapido h3,
+.normalgamemode h3{
+  padding: 0px 10px;;
+  text-align: center;
+}
+.separador{
+  margin-top: 20px;
+  border-left: 1px solid rgb(219, 219, 219);
+  width: 1px;
+  height: 280px;
+}
+
+/*<!--Main winScreen(Resultado do fim do jogo)-->*/
+.winScreen{
+  position: fixed;
+  top: 0;
+  background-color: hsla(71, 83%, 86%, 0.5);
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.results{
+  display: flex;
+  margin-top: 30px;
+  padding: 0px 20px 20px 20px;
+  flex-direction: column;
+  border-radius: 20px;
+  width: 400px;
+  background-color: #fffcf3;
+  box-shadow: 0 0 5px 2px rgb(194, 194, 194);
+  position: relative;
+}
+.winScreen-container{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wS-topbar{
+  padding: 0px;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 10px;
+}
+.wS-results{
+  display: flex;
+  flex-direction: column;
+}
+.allrules > div,
+.wS-results > div{
+  margin-top: 5px;
+  display: flex;
+}
+/*Texts*/
+.pensarapido h3,
+.normalgamemode h3,
+.normagame h3,
+.allrules h3,
+.wS-results h3{
+  margin-top: 15px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.004em;
+  color: #75B79E;
+}
+.rules h2{
+  font-size: 30px;
+}
+.wS-topbar > h2{
+  position: absolute;
+  font-size: 30px;
+  top: 110px;
+}
+/*Images Result*/
+.imgLogo{
+  width: 40px;
+  height: 40px;
+}
+.trophy{
+  width: 200px;
+  height: 150px;
+}
+/*Buttons*/
+.rulesbutton,
+.buttons{
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.backbutton,
+.pensarapidobutton,
+.normalgamemodebutton,
+.normalgame,
+.timergame,
+.rulesbutton,
+.changegame,
+.playAgain,
+.closeWindown{
+  box-shadow: 0 0 5px 2px rgb(194, 194, 194);
+  background-color: #41a07b;
+  border-radius: 100px;
+  width: 180px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.button-container{
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 10px;
+}
+.rulesbutton{
+  margin: 20px auto 0px auto;
+}
+.closeWindown{
+  width: 95%;
+  margin: 0 auto;
+}
+.gamemodes h4,
+.button-container h3,
+.rulesbutton h3,
+.buttons h3{
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fffcf3;
+}
+.backbutton{
+  margin-top: 20px;
+  width: 300px;
+}
+/*<!--Fim do Main winScreen(Resultado do fim do jogo)-->*/
+
+/*Classes Gerais para o JS*/
+.show{
+  display: flex;
 }
